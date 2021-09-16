@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+# api
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: api-back-votes-challenge
+    environment:
+      SERVER_PORT: 8080
+      DATABASE_URL: postgres:5432
+      DATABASE_DB: "postgres"
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_SCHEMA: backvotes
+    ports:
+    - "8080:8080"
+    depends_on:
+      - postgres
 
 #  database
   postgres:
