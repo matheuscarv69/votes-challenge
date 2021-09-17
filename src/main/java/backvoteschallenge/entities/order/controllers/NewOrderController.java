@@ -25,7 +25,7 @@ public class NewOrderController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @PostMapping("new-order")
+    @PostMapping("/new-order")
     public ResponseEntity<?> createNewOrder(
             @RequestBody @Valid NewOrderRequest request,
             UriComponentsBuilder uriBuilder) {

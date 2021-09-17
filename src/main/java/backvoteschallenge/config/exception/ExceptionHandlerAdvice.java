@@ -36,4 +36,17 @@ public class ExceptionHandlerAdvice {
         return ResponseEntity.status(status).body(standardError);
     }
 
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<StandardError> handleOrderNotFoundException(OrderNotFoundException e, HttpServletRequest request) {
+
+        String error = "Resource Not Found";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Invalid Order Id", request.getRequestURI());
+        Map<String, String> errorsTest = new HashMap<>();
+        errorsTest.put("orderId", e.getMessage());
+        standardError.setErrors(errorsTest);
+
+        return ResponseEntity.status(status).body(standardError);
+    }
+
 }
