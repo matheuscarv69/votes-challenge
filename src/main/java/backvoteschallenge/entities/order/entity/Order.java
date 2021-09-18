@@ -1,6 +1,5 @@
 package backvoteschallenge.entities.order.entity;
 
-
 import backvoteschallenge.entities.associate.entity.associate.Associate;
 import backvoteschallenge.entities.vote.entity.Vote;
 import com.fasterxml.jackson.annotation.JsonFormat;

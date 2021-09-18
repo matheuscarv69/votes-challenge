@@ -8,6 +8,9 @@ public class CpfCheckResponse {
         this.status = status;
     }
 
+    public CpfCheckResponse() {
+    }
+
     public StatusPossibleVote getStatus() {
         return status;
     }
