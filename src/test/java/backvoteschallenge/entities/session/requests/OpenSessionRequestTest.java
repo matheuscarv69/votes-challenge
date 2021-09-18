@@ -2,14 +2,13 @@ package backvoteschallenge.entities.session.requests;
 
 import backvoteschallenge.entities.order.entity.Order;
 import backvoteschallenge.entities.session.entity.Session.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class OpenSessionRequestTest {
 
@@ -43,7 +42,6 @@ class OpenSessionRequestTest {
         order.setId(1L);
         order.setTheme("Clean Code is great?");
         order.setEditor("Uncle Bob");
-        order.setWhishes(new ArrayList<>());
         return order;
     }
 

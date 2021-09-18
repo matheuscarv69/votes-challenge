@@ -14,11 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(OpenSessionController.class)
 class OpenSessionControllerIntegrationTest {
@@ -73,7 +72,6 @@ class OpenSessionControllerIntegrationTest {
         order.setId(1L);
         order.setTheme("Clean Code is great?");
         order.setEditor("Uncle Bob");
-        order.setWhishes(new ArrayList<>());
         return Optional.of(order);
     }
 

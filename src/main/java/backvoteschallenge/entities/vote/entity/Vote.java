@@ -26,12 +26,47 @@ public class Vote {
     @JoinColumn(name = "associate_id", nullable = false)
     private Associate associate;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
+    @ManyToOne()
     private Order order;
+
+    public Vote(TypeVote typeVote, Associate associate) {
+        this.typeVote = typeVote;
+        this.associate = associate;
+    }
 
     //    only hibernate
     public Vote() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public TypeVote getTypeVote() {
+        return typeVote;
+    }
+
+    public void setTypeVote(TypeVote typeVote) {
+        this.typeVote = typeVote;
+    }
+
+    public Associate getAssociate() {
+        return associate;
+    }
+
+    public void setAssociate(Associate associate) {
+        this.associate = associate;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

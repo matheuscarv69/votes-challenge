@@ -40,7 +40,6 @@ class SessionTest {
         order.setId(1L);
         order.setTheme("Clean Code is great?");
         order.setEditor("Uncle Bob");
-        order.setWhishes(new ArrayList<>());
         return order;
     }
 }
