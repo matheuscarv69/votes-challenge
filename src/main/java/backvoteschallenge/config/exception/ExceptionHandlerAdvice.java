@@ -40,7 +40,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<StandardError> handleOrderNotFoundException(OrderNotFoundException e, HttpServletRequest request) {
 
         String error = "Resource Not Found";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Invalid Order Id", request.getRequestURI());
         Map<String, String> errors = new HashMap<>();
         errors.put("orderId", e.getMessage());
@@ -53,7 +53,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<StandardError> handleSessionNotFoundException(SessionNotFoundException e, HttpServletRequest request) {
 
         String error = "Resource Not Found";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Invalid Session Id", request.getRequestURI());
         Map<String, String> errors = new HashMap<>();
         errors.put("sessionId", e.getMessage());
@@ -66,7 +66,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<StandardError> handleAssociateNotFoundException(AssociateNotFoundException e, HttpServletRequest request) {
 
         String error = "Resource Not Found";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Invalid Associate Id", request.getRequestURI());
         Map<String, String> errors = new HashMap<>();
         errors.put("associateId", e.getMessage());
@@ -109,6 +109,19 @@ public class ExceptionHandlerAdvice {
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Associate don't Able to vote", request.getRequestURI());
         Map<String, String> errors = new HashMap<>();
         errors.put("associateId", e.getMessage());
+        standardError.setErrors(errors);
+
+        return ResponseEntity.status(status).body(standardError);
+    }
+
+    @ExceptionHandler(AssociateDocumentAlreadyExistsException.class)
+    public ResponseEntity<StandardError> handleAssociateDocumentAlreadyExistsException(AssociateDocumentAlreadyExistsException e, HttpServletRequest request) {
+
+        String error = "Associate with Document Already Exists";
+        HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+        StandardError standardError = new StandardError(Instant.now(), status.value(), error, "", request.getRequestURI());
+        Map<String, String> errors = new HashMap<>();
+        errors.put("document", e.getMessage());
         standardError.setErrors(errors);
 
         return ResponseEntity.status(status).body(standardError);

@@ -15,6 +15,11 @@ public class Associate {
     @Column(name = "document", unique = true, nullable = false)
     private String document;
 
+    public Associate(String name, String document) {
+        this.name = name;
+        this.document = document;
+    }
+
     // only hibernate
     public Associate() {
     }

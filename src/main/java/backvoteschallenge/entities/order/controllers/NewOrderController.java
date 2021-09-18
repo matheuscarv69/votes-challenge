@@ -13,19 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
 @RequestMapping("/orders")
 public class NewOrderController {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private OrderRepository repository;
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     @PostMapping("/new-order")
+    @Transactional
     public ResponseEntity<?> createNewOrder(
             @RequestBody @Valid NewOrderRequest request,
             UriComponentsBuilder uriBuilder) {
@@ -33,7 +34,7 @@ public class NewOrderController {
 
         Order order = repository.save(request.toModel());
 
-        log.info("Saving new Order");
+        log.info("Saved new Order");
 
         URI uri = uriBuilder
                 .path("/orders/{order_id}")

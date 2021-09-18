@@ -59,7 +59,7 @@ public class ReceivingVotingInOrderServiceImpl implements ReceivingVotingInOrder
         order.addVote(vote);
 
         voteRepository.save(vote);
-        log.info("Savign Vote: {} in Order: {}", vote.getId(), order.getTheme());
+        log.info("Saved Vote: {} in Order: {}", vote.getId(), order.getTheme());
 
         return vote;
     }

@@ -27,6 +27,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @ExtendWith(MockitoExtension.class)
 class ReceivingVotingInOrderServiceImplTest {
 
@@ -91,7 +93,8 @@ class ReceivingVotingInOrderServiceImplTest {
         var sessionId = 1L;
 
         // acao
-        var exception = Assertions.assertThrows(SessionNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(SessionNotFoundException.class,
+                () -> service.executeVoting(sessionId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -108,7 +111,7 @@ class ReceivingVotingInOrderServiceImplTest {
         Mockito.when(sessionRepository.findById(sessionId)).thenReturn(criarOptionalSessao());
 
         // acao
-        var exception = Assertions.assertThrows(AssociateNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -128,7 +131,7 @@ class ReceivingVotingInOrderServiceImplTest {
         Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument())).thenReturn(criaCpfCheckResponse(StatusPossibleVote.UNABLE_TO_VOTE));
 
         // acao
-        var exception = Assertions.assertThrows(AssociateUnableToVoteException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateUnableToVoteException.class, () -> service.executeVoting(sessionId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -148,7 +151,7 @@ class ReceivingVotingInOrderServiceImplTest {
         Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument())).thenReturn(criaCpfCheckResponse(StatusPossibleVote.ABLE_TO_VOTE));
 
         // acao
-        var exception = Assertions.assertThrows(OrderNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(OrderNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -170,15 +173,13 @@ class ReceivingVotingInOrderServiceImplTest {
         Mockito.when(orderRepository.findById(orderId)).thenReturn(criarOptionalPautaVotada());
 
         // acao
-        var exception = Assertions.assertThrows(AssociateAlreadyVotedException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateAlreadyVotedException.class, () -> service.executeVoting(sessionId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
         Assertions.assertEquals(AssociateAlreadyVotedException.class, exception.getClass());
         Assertions.assertEquals("O Associado informado já votou nesta Pauta.", exception.getMessage());
     }
-
-    // Massa
 
     private CpfCheckResponse criaCpfCheckResponse(StatusPossibleVote statusPossibleVote) {
         return new CpfCheckResponse(statusPossibleVote);
@@ -193,11 +194,9 @@ class ReceivingVotingInOrderServiceImplTest {
         return Optional.of(session);
     }
 
-
     private VotingInSessionRequest criarRequest() {
         return new VotingInSessionRequest(1L, 1L, TypeVote.Nao);
     }
-
 
     private Vote criaVoto() {
         Vote vote = new Vote();
@@ -208,7 +207,6 @@ class ReceivingVotingInOrderServiceImplTest {
 
         return vote;
     }
-
 
     private Order criaPauta() {
         Order order = new Order();
