@@ -1,5 +1,6 @@
 package backvoteschallenge.entities.order.service;
 
+import backvoteschallenge.core.kafka.producers.ResultsProducer;
 import backvoteschallenge.entities.order.entity.Order;
 import backvoteschallenge.entities.order.repositories.OrderRepository;
 import backvoteschallenge.entities.vote.entity.TypeVote;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -23,6 +25,9 @@ class GetResultsVotingOrderServiceImplTest {
 
     @Mock
     private OrderRepository repository;
+
+    @Mock
+    private ResultsProducer producer;
 
     @InjectMocks
     private GetResultsVotingOrderServiceImpl service;

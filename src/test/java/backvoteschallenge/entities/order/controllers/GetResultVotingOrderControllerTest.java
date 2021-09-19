@@ -4,6 +4,7 @@ import backvoteschallenge.entities.order.service.GetResultsVotingOrderServiceImp
 import backvoteschallenge.entities.vote.entity.TypeVote;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
