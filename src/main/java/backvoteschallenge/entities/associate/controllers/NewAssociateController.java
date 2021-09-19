@@ -1,9 +1,12 @@
 package backvoteschallenge.entities.associate.controllers;
 
 import backvoteschallenge.entities.associate.entity.associate.Associate;
-import backvoteschallenge.entities.associate.repositories.AssociateRepository;
 import backvoteschallenge.entities.associate.requests.NewAssociateRequest;
 import backvoteschallenge.entities.associate.service.NewAssociateService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,12 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
+/**
+ * Endpoint responsavel por salvar um novo associado ao sistema.
+ *
+ * Endpoint responsible for saving a new one associated with the system.
+ * */
+@Api(tags = "Associado")
 @RestController
 @RequestMapping("/associate")
 public class NewAssociateController {
@@ -26,6 +35,13 @@ public class NewAssociateController {
     @Autowired
     private NewAssociateService service;
 
+    @ApiOperation("Cadastra um novo Associado")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Associado cadastrado com sucesso"),
+            @ApiResponse(code = 400, message = "Requisição mal formatada"),
+            @ApiResponse(code = 422, message = "CPF informado já existe no sistema"),
+            @ApiResponse(code = 500, message = "Erro interno")
+    })
     @PostMapping("/new-associate")
     @Transactional
     public ResponseEntity<?> createNewAssociate(

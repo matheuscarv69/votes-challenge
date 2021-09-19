@@ -1,14 +1,17 @@
 package backvoteschallenge.entities.order.requests;
 
 import backvoteschallenge.entities.order.entity.Order;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotBlank;
 
 public class NewOrderRequest {
 
+    @ApiModelProperty(value = "Tema da Pauta", position = 1, required = true)
     @NotBlank
     private String theme;
 
+    @ApiModelProperty(value = "Nome do Criador da Pauta", position = 2, required = true)
     @NotBlank
     private String editor;
 

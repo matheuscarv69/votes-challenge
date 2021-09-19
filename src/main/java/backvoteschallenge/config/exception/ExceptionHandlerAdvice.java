@@ -79,7 +79,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<StandardError> handleSessionIsClosedException(SessionIsClosedException e, HttpServletRequest request) {
 
         String error = "Resource Not Acessible";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, "Session is Closed", request.getRequestURI());
         Map<String, String> errors = new HashMap<>();
         errors.put("sessionId", e.getMessage());

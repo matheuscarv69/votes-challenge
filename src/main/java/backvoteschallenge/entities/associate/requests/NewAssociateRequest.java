@@ -1,15 +1,18 @@
 package backvoteschallenge.entities.associate.requests;
 
 import backvoteschallenge.entities.associate.entity.associate.Associate;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
 
 public class NewAssociateRequest {
 
+    @ApiModelProperty(value = "Nome do Associado", position = 1, required = true)
     @NotBlank
     private String name;
 
+    @ApiModelProperty(value = "CPF", position = 2, required = true)
     @CPF
     @NotBlank
     private String document;
