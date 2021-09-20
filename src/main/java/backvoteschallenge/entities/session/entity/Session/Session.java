@@ -25,13 +25,17 @@ public class Session {
     @Column(name = "finished_at", nullable = false)
     private LocalDateTime finishedAt;
 
+    @Column(name = "session_open")
+    private Boolean open = true;
+
     public Session(Order order, LocalDateTime finishedAt) {
         this.order = order;
         this.finishedAt = finishedAt;
     }
 
     public boolean isOpen() {
-        return LocalDateTime.now().isBefore(finishedAt);
+        this.open = LocalDateTime.now().isBefore(finishedAt);
+        return open;
     }
 
     // only hibernate
@@ -66,4 +70,11 @@ public class Session {
         this.finishedAt = finishedAt;
     }
 
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
 }
