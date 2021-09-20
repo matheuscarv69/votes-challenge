@@ -1,7 +1,6 @@
 package backvoteschallenge.entities.order.service;
 
 import backvoteschallenge.config.exception.OrderNotFoundException;
-import backvoteschallenge.core.kafka.producers.ResultsProducer;
 import backvoteschallenge.entities.order.entity.Order;
 import backvoteschallenge.entities.order.repositories.OrderRepository;
 import backvoteschallenge.entities.vote.entity.TypeVote;
@@ -22,9 +21,6 @@ public class GetResultsVotingOrderServiceImpl implements GetResultsVotingOrder {
 
     @Autowired
     private OrderRepository repository;
-
-    @Autowired
-    private ResultsProducer resultsProducer;
 
     @Override
     public Map<TypeVote, Integer> getResults(Long orderId) {
@@ -47,8 +43,6 @@ public class GetResultsVotingOrderServiceImpl implements GetResultsVotingOrder {
 
         results.put(TypeVote.Nao, resultTypeNO.size());
         results.put(TypeVote.Sim, resultTypeYes.size());
-
-        resultsProducer.send(results);
 
         return results;
     }

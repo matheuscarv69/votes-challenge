@@ -26,9 +26,6 @@ class GetResultsVotingOrderServiceImplTest {
     @Mock
     private OrderRepository repository;
 
-    @Mock
-    private ResultsProducer producer;
-
     @InjectMocks
     private GetResultsVotingOrderServiceImpl service;
 

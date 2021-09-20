@@ -21,6 +21,19 @@ services:
       - kafka
       - postgres
 
+  consumer-back-votes:
+    image: matheuscarv69/kafka-consumer-back-votes-challenge
+    container_name: consumer-back-votes
+    environment:
+      SERVER_PORT: 8081
+      KAFKA_HOST: kafka:9092
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+      - postgres
+      - api
+
   postgres:
     image: 'postgres:alpine'
     container_name: postgres_backvotes
