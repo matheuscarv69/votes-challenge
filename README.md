@@ -38,6 +38,24 @@ Os requisitos para isso são:
 - [Docker](https://www.docker.com/products/docker-desktop) - Baixe de acordo com o seu SO
 - [Docker-compose](https://docs.docker.com/compose/install/) - Se estiver utilizando Windows, o Docker desktop já possui o docker-compose instalado
 
+A imagem da aplicação também está disponível no Docker Hub:
+
+- [matheuscarv69/back-votes-challenge](https://hub.docker.com/repository/docker/matheuscarv69/back-votes-challenge)
+
+Caso queria executa-lá através dessa imagem, abaixo tem alguns comandos que podem lhe ajudar:
+
+## ⬇ 1. Pull
+
+```shell
+docker pull matheuscarv69/back-votes-challenge
+```
+## 🏃‍♂️ 2. Running
+
+O comando abaixo executa a imagem baixada em um container, essa aplicação possui algumas env vars, atenção para as que possuem o sufixo **HOST**, neste você deve colocar o ipv4 da sua máquina.
+
+```shell
+docker run -d -p 8081:8081 -e SERVER_PORT=8081:8081 -e DATABASE_URL="192.168.0.115:5432" -e DATABASE_DB="postgres" -e DATABASE_USER="postgres" -e DATABASE_PASSWORD="password" -e DB_SCHEMA="backvotes" -e DELAY_SCHELUDED_CHECK_SESSION="10000" -e KAFKA_HOST="192.168.0.115:29092" matheuscarv69/back-votes-challenge
+```
 ## 🎲 Executando a API com o docker-compose
 
 Com esse repositório já clonado em sua máquina e com todos os pré-requisitos atendidos.
@@ -68,8 +86,10 @@ docker-compose up -d
 
 ## 📝Fazendo requisições - Insomnia
 
-Essa aplicação tem um workspace com todas as requisições disponíveis configurado no aplicativo **Insomnia**, clicando no botão abaixo você pode
+Essa aplicação tem um workspace compartilhado com o projeto [Back Votes Kafka Consumer](https://github.com/matheuscarv69/back-votes-challenge-kafka-consumer) com todas as requisições disponíveis configurado no aplicativo **Insomnia**, clicando no botão abaixo você pode
 baixar o workspace de requests utilizados nesse projeto.
+
+A pasta com as Requests do Back Votes Kafka Consumer é chamada Kafka Consumer.
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Back%20Vote%20Challenge&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fmatheuscarv69%2F07483d2d88c763e23b0405b34bb9909a%2Fraw%2F161df15967626e742678e4699e8657f86e8dfc9c%2Frequests-back-vote-challenge)
 
@@ -91,7 +111,8 @@ Foi disponibilazada um API externa para verificar o CPF e a partir do response r
 https://user-info.herokuapp.com/users/%7Bcpf%7D
 ```
 
-Além disso foi criado uma outra aplicação para servir de Kafka Consumer para o tópico enviado ao Kafka através desse projeto. Em breve ela será adicionada ao docker-compose presente aqui, abaixo segue o link do repositório do Kafka Consumer.
+### 🚀 Back Votes Challenge 📚
+Essa é uma API que foi desenvolvida para ser o Kafka Consumer para este Projeto, no link abaixo você pode acessar toda a documentação e a aplicação.
 
 ```bash
 https://github.com/matheuscarv69/back-votes-challenge-kafka-consumer
