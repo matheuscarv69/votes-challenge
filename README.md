@@ -111,7 +111,7 @@ Foi disponibilazada um API externa para verificar o CPF e a partir do response r
 https://user-info.herokuapp.com/users/%7Bcpf%7D
 ```
 
-### 🚀 Back Votes Challenge 📚
+### 🚀 Back Votes Challenge Kafka Consumer 📚
 Essa é uma API que foi desenvolvida para ser o Kafka Consumer para este Projeto, no link abaixo você pode acessar toda a documentação e a aplicação.
 
 ```bash
