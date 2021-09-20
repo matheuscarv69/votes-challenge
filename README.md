@@ -40,7 +40,7 @@ Os requisitos para isso são:
 
 A imagem da aplicação também está disponível no Docker Hub:
 
-- [matheuscarv69/back-votes-challenge](https://hub.docker.com/repository/docker/matheuscarv69/back-votes-challenge)
+- [matheuscarv69/back-votes-challenge](https://hub.docker.com/r/matheuscarv69/back-votes-challenge)
 
 Caso queria executa-lá através dessa imagem, abaixo tem alguns comandos que podem lhe ajudar:
 
