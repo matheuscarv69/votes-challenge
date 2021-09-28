@@ -54,7 +54,7 @@ docker pull matheuscarv69/back-votes-challenge
 O comando abaixo executa a imagem baixada em um container, essa aplicação possui algumas env vars, atenção para as que possuem o sufixo **HOST**, neste você deve colocar o ipv4 da sua máquina.
 
 ```shell
-docker run -d -p 8081:8081 -e SERVER_PORT=8081:8081 -e DATABASE_URL="192.168.0.115:5432" -e DATABASE_DB="postgres" -e DATABASE_USER="postgres" -e DATABASE_PASSWORD="password" -e DB_SCHEMA="backvotes" -e DELAY_SCHELUDED_CHECK_SESSION="10000" -e KAFKA_HOST="192.168.0.115:29092" matheuscarv69/back-votes-challenge
+docker run -d -p 8080:8080 -e SERVER_PORT=8080 -e DATABASE_URL="192.168.0.115:5432" -e DATABASE_DB="postgres" -e DATABASE_USER="postgres" -e DATABASE_PASSWORD="password" -e DB_SCHEMA="backvotes" -e DELAY_SCHELUDED_CHECK_SESSION="10000" -e KAFKA_HOST="192.168.0.115:29092" matheuscarv69/back-votes-challenge
 ```
 ## 🎲 Executando a API com o docker-compose
 
