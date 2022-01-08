@@ -91,7 +91,7 @@ baixar o workspace de requests utilizados nesse projeto.
 
 A pasta com as Requests do Back Votes Kafka Consumer é chamada Kafka Consumer.
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Back%20Vote%20Challenge&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fmatheuscarv69%2F07483d2d88c763e23b0405b34bb9909a%2Fraw%2F161df15967626e742678e4699e8657f86e8dfc9c%2Frequests-back-vote-challenge)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Back%20Votes%20Challenge&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fmatheuscarv69%2F07483d2d88c763e23b0405b34bb9909a%2Fraw%2F099e810e69649263e102eba1b9085e9b32cd453f%2Frequests-back-vote-challenge)
 
 Além disso a mesma foi documentada usando o Swagger, por meio dele você também pode ter acesso as requisições e aos modelos de dados recebidos e enviados pela aplicação.
 Com a aplicação sendo executada, você pode acessar a página do Swagger por meio da url abaixo.
