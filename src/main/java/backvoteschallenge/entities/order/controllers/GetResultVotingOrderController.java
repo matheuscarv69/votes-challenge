@@ -1,6 +1,5 @@
 package backvoteschallenge.entities.order.controllers;
 
-import backvoteschallenge.core.kafka.producers.ResultsProducer;
 import backvoteschallenge.entities.order.responses.ResultsResponse;
 import backvoteschallenge.entities.order.service.GetResultsVotingOrder;
 import backvoteschallenge.entities.vote.entity.TypeVote;
@@ -23,7 +22,7 @@ import java.util.Map;
  * Endpoint responsavel por buscar os resultado de uma votacao em uma pauta.
  *
  * Endpoint responsible for fetching the results of a vote on an agenda.
- * */
+ */
 @Api(tags = "Pauta")
 @RestController
 @RequestMapping("/orders")

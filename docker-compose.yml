@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  api:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    container_name: api-back-votes
-    environment:
-      SERVER_PORT: 8080
-      DATABASE_URL: postgres:5432
-      DATABASE_DB: "postgres"
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: password
-      DATABASE_SCHEMA: backvotes
-      KAFKA_HOST: kafka:9092
-      DELAY_SCHELUDED_CHECK_SESSION: 10000
-    ports:
-      - "8080:8080"
-    depends_on:
-      - kafka
-      - postgres
+#  api:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    container_name: api-back-votes
+#    environment:
+#      SERVER_PORT: 8080
+#      DATABASE_URL: postgres:5432
+#      DATABASE_DB: "postgres"
+#      DATABASE_USER: postgres
+#      DATABASE_PASSWORD: password
+#      DATABASE_SCHEMA: backvotes
+#      KAFKA_HOST: kafka:9092
+#      DELAY_SCHELUDED_CHECK_SESSION: 10000
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - kafka
+#      - postgres
 
   postgres:
     image: 'postgres:alpine'

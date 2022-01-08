@@ -21,7 +21,7 @@ import java.net.URI;
  * Endpoint responsavel por receber os votos em uma pauta.
  *
  * Endpoint responsible for receiving votes on an agenda.
- * */
+ */
 @Api(tags = "Sessão")
 @RestController
 @RequestMapping("/session")
@@ -43,15 +43,16 @@ public class ReceiveVoteInOrderController {
             @ApiResponse(code = 422, message = "Associado não está apto à votar"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @PostMapping("/voting/{sessionId}")
+    @PostMapping("/{sessionId}/order/{orderId}/vote")
     public ResponseEntity<?> receiveVotingInOrder(
             @PathVariable Long sessionId,
+            @PathVariable Long orderId,
             @RequestBody @Valid VotingInSessionRequest request,
             UriComponentsBuilder uriBuilder
     ) {
-        log.info("Receiving request for vote in Session: {} at Order: {}", sessionId, request.getOrderId());
+        log.info("Receiving request for vote in Session: {} at Order: {}", sessionId, orderId);
 
-        Vote vote = service.executeVoting(sessionId, request);
+        Vote vote = service.executeVoting(sessionId, orderId, request);
 
         URI uri = uriBuilder
                 .path("/vote/{vote_id}")

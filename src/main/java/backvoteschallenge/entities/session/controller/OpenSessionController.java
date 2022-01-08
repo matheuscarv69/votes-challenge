@@ -28,7 +28,7 @@ import java.net.URI;
  * Endpoint responsavel por realizar a abertura de uma sessao.
  *
  * Endpoint responsible for opening a session.
- * */
+ */
 @Api(tags = "Sessão")
 @RestController
 @RequestMapping("/session")
@@ -49,7 +49,7 @@ public class OpenSessionController {
             @ApiResponse(code = 404, message = "Pauta não encontrada"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @PostMapping("/open-session")
+    @PostMapping
     @Transactional
     public ResponseEntity<?> openSession(@RequestBody @Valid OpenSessionRequest request, UriComponentsBuilder uriBuilder) {
         log.info("Receiving request for open new session, order id: {}", request.getOrderId());

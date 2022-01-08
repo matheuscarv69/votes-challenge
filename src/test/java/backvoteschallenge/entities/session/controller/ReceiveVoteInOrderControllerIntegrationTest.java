@@ -21,7 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ReceiveVoteInOrderController.class)
 class ReceiveVoteInOrderControllerIntegrationTest {
 
-    private final String URL = "/session/voting/";
+    //    private final String URL = "/session/voting/";
+    private final String URL_SESSION = "/session/";
+    private final String URL_ORDER = "/order/";
+    private final String URL_VOTE = "/vote";
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,17 +37,26 @@ class ReceiveVoteInOrderControllerIntegrationTest {
     void testDeveEfetuarVotoEmPauta() throws Exception {
         // cenario
         var sessionId = 1L;
-        Mockito.doReturn(criaVoto()).when(service).executeVoting(Mockito.any(Long.class), Mockito.any(VotingInSessionRequest.class));
+        var orderId = 1L;
+        Mockito.doReturn(criaVoto()).when(service).executeVoting(
+                Mockito.any(Long.class),
+                Mockito.any(Long.class),
+                Mockito.any(VotingInSessionRequest.class)
+        );
 
         // acao
         mockMvc.perform(
-                post(URL + sessionId)
-                        .content("{\"orderId\": 1,\"associateId\":\"1\",\"vote\":\"Nao\"}")
+                post(URL_SESSION + sessionId + URL_ORDER + orderId + URL_VOTE)
+                        .content("{\"associateId\":\"1\",\"vote\":\"Nao\"}")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isCreated());
 
         // validacao
-        Mockito.verify(service, Mockito.times(1)).executeVoting(Mockito.any(Long.class), Mockito.any(VotingInSessionRequest.class));
+        Mockito.verify(service, Mockito.times(1)).executeVoting(
+                Mockito.any(Long.class),
+                Mockito.any(Long.class),
+                Mockito.any(VotingInSessionRequest.class)
+        );
     }
 
     private Vote criaVoto() {

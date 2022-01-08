@@ -25,7 +25,7 @@ import java.net.URI;
  * Endpoint responsavel por salvar um nova pauta no sistema.
  *
  * Endpoint responsible for saving a new agenda in the system.
- * */
+ */
 @Api(tags = "Pauta")
 @RestController
 @RequestMapping("/orders")
@@ -41,7 +41,7 @@ public class NewOrderController {
             @ApiResponse(code = 400, message = "Requisição mal formatada"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @PostMapping("/new-order")
+    @PostMapping
     @Transactional
     public ResponseEntity<?> createNewOrder(
             @RequestBody @Valid NewOrderRequest request,

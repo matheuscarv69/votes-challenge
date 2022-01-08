@@ -70,7 +70,7 @@ class ReceivingVotingInOrderServiceImplTest {
         Mockito.when(voteRepository.save(voteArgumentCaptor.capture())).thenReturn(criaVoto());
 
         // acao
-        var voteSaved = service.executeVoting(sessionId, criarRequest());
+        var voteSaved = service.executeVoting(sessionId, orderId, criarRequest());
 
         // validacao
         Mockito.verify(sessionRepository, Mockito.times(1)).findById(Mockito.any(Long.class));
@@ -91,10 +91,11 @@ class ReceivingVotingInOrderServiceImplTest {
     void testDeveLancarSessionNotFoundException() {
         // cenario
         var sessionId = 1L;
+        var orderId = 1L;
 
         // acao
         var exception = assertThrows(SessionNotFoundException.class,
-                () -> service.executeVoting(sessionId, criarRequest()));
+                () -> service.executeVoting(sessionId, orderId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -107,11 +108,13 @@ class ReceivingVotingInOrderServiceImplTest {
     void testDeveLancarAssociateNotFoundException() {
         // cenario
         var sessionId = 1L;
+        var orderId = 1L;
 
         Mockito.when(sessionRepository.findById(sessionId)).thenReturn(criarOptionalSessao());
 
         // acao
-        var exception = assertThrows(AssociateNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateNotFoundException.class,
+                () -> service.executeVoting(sessionId, orderId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -124,14 +127,17 @@ class ReceivingVotingInOrderServiceImplTest {
     void testDeveLancarAssociateUnableToVoteException() {
         // cenario
         var sessionId = 1L;
+        var orderId = 1L;
         var associateId = 1L;
 
         Mockito.when(sessionRepository.findById(sessionId)).thenReturn(criarOptionalSessao());
         Mockito.when(associateRepository.findById(associateId)).thenReturn(criaOptionalAssociado());
-        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument())).thenReturn(criaCpfCheckResponse(StatusPossibleVote.UNABLE_TO_VOTE));
+        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument()))
+                .thenReturn(criaCpfCheckResponse(StatusPossibleVote.UNABLE_TO_VOTE));
 
         // acao
-        var exception = assertThrows(AssociateUnableToVoteException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateUnableToVoteException.class,
+                () -> service.executeVoting(sessionId, orderId, criarRequest()));
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -144,14 +150,18 @@ class ReceivingVotingInOrderServiceImplTest {
     void testDeveLancarOrderNotFoundException() {
         // cenario
         var sessionId = 1L;
+        var orderId = 1L;
         var associateId = 1L;
 
         Mockito.when(sessionRepository.findById(sessionId)).thenReturn(criarOptionalSessao());
         Mockito.when(associateRepository.findById(associateId)).thenReturn(criaOptionalAssociado());
-        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument())).thenReturn(criaCpfCheckResponse(StatusPossibleVote.ABLE_TO_VOTE));
+        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument()))
+                .thenReturn(criaCpfCheckResponse(StatusPossibleVote.ABLE_TO_VOTE));
 
         // acao
-        var exception = assertThrows(OrderNotFoundException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(OrderNotFoundException.class,
+                () -> service.executeVoting(sessionId, orderId, criarRequest())
+        );
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -169,11 +179,14 @@ class ReceivingVotingInOrderServiceImplTest {
 
         Mockito.when(sessionRepository.findById(sessionId)).thenReturn(criarOptionalSessao());
         Mockito.when(associateRepository.findById(associateId)).thenReturn(criaOptionalAssociado());
-        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument())).thenReturn(criaCpfCheckResponse(StatusPossibleVote.ABLE_TO_VOTE));
+        Mockito.when(cpfCheckClient.checkCpf(criaAssociado().getDocument()))
+                .thenReturn(criaCpfCheckResponse(StatusPossibleVote.ABLE_TO_VOTE));
         Mockito.when(orderRepository.findById(orderId)).thenReturn(criarOptionalPautaVotada());
 
         // acao
-        var exception = assertThrows(AssociateAlreadyVotedException.class, () -> service.executeVoting(sessionId, criarRequest()));
+        var exception = assertThrows(AssociateAlreadyVotedException.class,
+                () -> service.executeVoting(sessionId, orderId, criarRequest())
+        );
 
         // validacao
         Assertions.assertNotNull(exception);
@@ -195,7 +208,7 @@ class ReceivingVotingInOrderServiceImplTest {
     }
 
     private VotingInSessionRequest criarRequest() {
-        return new VotingInSessionRequest(1L, 1L, TypeVote.Nao);
+        return new VotingInSessionRequest(1L, TypeVote.Nao);
     }
 
     private Vote criaVoto() {

@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(OpenSessionController.class)
 class OpenSessionControllerIntegrationTest {
 
-    private final String URL = "/session/open-session";
+    private final String URL = "/session";
 
     @Autowired
     private MockMvc mockMvc;

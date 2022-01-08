@@ -5,6 +5,6 @@ import backvoteschallenge.entities.vote.entity.Vote;
 
 public interface ReceivingVotingInOrderService {
 
-    Vote executeVoting(Long sessionId, VotingInSessionRequest request);
+    Vote executeVoting(Long sessionId, Long orderId, VotingInSessionRequest request);
 
 }
