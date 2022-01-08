@@ -20,7 +20,7 @@ class VotingInSessionRequestTest {
         var modelEsperado = criaVoto();
         modelEsperado.setOrder(criaPauta());
 
-        var request = new VotingInSessionRequest(1L, 1L, TypeVote.Nao);
+        var request = new VotingInSessionRequest(1L, TypeVote.Nao);
 
         var returnModel = request.toModel(criaAssociado());
         returnModel.setId(1L);

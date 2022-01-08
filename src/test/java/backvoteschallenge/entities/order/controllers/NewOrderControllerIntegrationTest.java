@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(NewOrderController.class)
 class NewOrderControllerIntegrationTest {
 
-    private final String URL = "/orders/new-order";
+    private final String URL = "/orders";
 
     @Autowired
     private MockMvc mockMvc;

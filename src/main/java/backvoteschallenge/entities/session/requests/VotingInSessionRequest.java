@@ -10,11 +10,6 @@ import javax.validation.constraints.Positive;
 
 public class VotingInSessionRequest {
 
-    @ApiModelProperty(value = "Id da Pauta", position = 1, required = true)
-    @NotNull
-    @Positive
-    private Long orderId;
-
     @ApiModelProperty(value = "Id do Associado", position = 2, required = true)
     @NotNull
     @Positive
@@ -24,8 +19,7 @@ public class VotingInSessionRequest {
     @NotNull
     private TypeVote vote;
 
-    public VotingInSessionRequest(Long orderId, Long associateId, TypeVote vote) {
-        this.orderId = orderId;
+    public VotingInSessionRequest(Long associateId, TypeVote vote) {
         this.associateId = associateId;
         this.vote = vote;
     }
@@ -35,14 +29,6 @@ public class VotingInSessionRequest {
     }
 
     public VotingInSessionRequest() {
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
     }
 
     public Long getAssociateId() {

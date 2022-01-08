@@ -43,7 +43,7 @@ public class ReceivingVotingInOrderServiceImpl implements ReceivingVotingInOrder
 
     @Override
     @Transactional
-    public Vote executeVoting(Long sessionId, VotingInSessionRequest request) {
+    public Vote executeVoting(Long sessionId, Long orderId, VotingInSessionRequest request) {
 
         checkIfSessionIsOpen(sessionId);
 
@@ -52,7 +52,7 @@ public class ReceivingVotingInOrderServiceImpl implements ReceivingVotingInOrder
 
         checkAssociateAbleToVote(associate);
 
-        Order order = verifyIfAssociateAlreadyVoted(request, associate);
+        Order order = verifyIfAssociateAlreadyVoted(orderId, associate);
 
         Vote vote = request.toModel(associate);
 
@@ -73,8 +73,8 @@ public class ReceivingVotingInOrderServiceImpl implements ReceivingVotingInOrder
         }
     }
 
-    private Order verifyIfAssociateAlreadyVoted(VotingInSessionRequest request, Associate associate) {
-        Order order = orderRepository.findById(request.getOrderId())
+    private Order verifyIfAssociateAlreadyVoted(Long orderId, Associate associate) {
+        Order order = orderRepository.findById(orderId)
                 .orElseThrow(OrderNotFoundException::new);
 
         if (order.associateAlreadyVoted(associate)) {
