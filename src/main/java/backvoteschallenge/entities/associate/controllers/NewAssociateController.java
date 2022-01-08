@@ -42,7 +42,7 @@ public class NewAssociateController {
             @ApiResponse(code = 422, message = "CPF informado já existe no sistema"),
             @ApiResponse(code = 500, message = "Erro interno")
     })
-    @PostMapping("/new-associate")
+    @PostMapping
     @Transactional
     public ResponseEntity<?> createNewAssociate(
             @RequestBody @Valid NewAssociateRequest request,

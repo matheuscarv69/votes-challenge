@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(NewAssociateController.class)
 class NewAssociateControllerIntegrationTest {
 
-    private final String URL = "/associate/new-associate";
+    private final String URL = "/associate";
 
     @Autowired
     private MockMvc mockMvc;
