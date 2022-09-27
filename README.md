@@ -1,8 +1,8 @@
-# 🚀 Back Votes Challenge 📚
+# 🚀 Votes Challenge 📚
 
 Este projeto trata-se de um desafio da South System, ele consiste basicamente em uma API REST para realizar alguns fluxos de cadastro e votação de Pautas em uma Sessão. As tecnologias usadas para isso foram Java, Spring Boot, Kafka, Flyway, Postgres e Swagger.
 
-[![GitHub stars](https://img.shields.io/github/stars/matheuscarv69/back-votes-challenge?color=7159)](https://github.com/matheuscarv69/back-votes-challenge/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/matheuscarv69/back-votes-challenge?color=7159)](https://github.com/matheuscarv69/votes-challenge/stargazers)
 ![Maven Central with version prefix filter](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven/3.6.3?color=7159)
 
 ## 🤔 O que é este projeto?
